@@ -5,9 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  // Material UI complains with react strict mode
+  //<React.StrictMode>
+    <App />,
+  //</React.StrictMode>,
   document.getElementById('root')
 );
 

@@ -1,23 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+//import ReactDOM from 'react-dom';
+import './index.css';
+import DemucsMain from './Components/DemucsMain';
+
+import { ApolloClient, InMemoryCache, ApolloProvider,  HttpLink, from } from '@apollo/client';
+
+const link = from (
+  [
+    //errorLink,
+    new HttpLink({uri: 'http://localhost:5000/graphql'})
+  ]
+)
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: link,
+  fetchOptions: {
+    mode: 'no-cors',
+  },
+})
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <label>
+          DEMUCS WebApp
+        </label>
       </header>
+      <ApolloProvider client={client}>
+        <DemucsMain />
+      </ApolloProvider>
     </div>
   );
 }
